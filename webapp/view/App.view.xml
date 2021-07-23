@@ -1,0 +1,141 @@
+<mvc:View
+    controllerName="com.nespola.aprobacionsolicituddepedido.controller.App"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:ux="sap.uxap" xmlns:core="sap.ui.core"  xmlns:tnt="sap.tnt">
+		<App id="app"  height="90%">
+			<pages>
+				<Page id="page" title="{i18n>title}" showHeader="false" showFooter="false">
+					<content>
+                    <l:VerticalLayout width="100%">
+                        <Panel id="idFbHeader" backgroundDesign="Transparent">
+                            <l:Grid defaultSpan="XL6 L6 M12 S12">
+                                <VBox>
+                                <l:HorizontalLayout>
+                                    <Label text="Número de solicitud:" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+                                    <tnt:InfoLabel id="il1" text="{header>/porqs}" class="sapUiSmallMarginTop" renderMode="Narrow" colorScheme="5" displayOnly= "true" />              
+                                </l:HorizontalLayout>
+                                <l:HorizontalLayout>
+                                    <Label text="Sociedad:" class="sapUiSmallMarginTop sapUiTinyMarginEnd" />
+                                    <Text text="{header>/bukrs}-{header>/bukrsTxt}" class="sapUiSmallMarginTop" />         
+                                </l:HorizontalLayout>
+                                <l:HorizontalLayout>    
+                                    <TextArea value="" placeholder="Ingrese comentario (opcional).." class="sapUiSmallMarginTop sapUiTinyMarginEnd" growingMaxLines="4" growing="true"/>
+                                    <Button icon="sap-icon://comment" class="sapUiSmallMarginTop sapUiTinyMarginBegin" press="onCommentsView" />                
+                                </l:HorizontalLayout>
+                                </VBox>
+                                <VBox>                                
+                                 <l:HorizontalLayout>
+                                    <Label text="{i18n>TipoSolicitud}" class="sapUiSmallMarginTop sapUiTinyMarginEnd" />
+                                    <Text text="{ parts:[
+                                                {path: 'header>/bsart'},
+                                                {path: 'header>/bsartTxt'}
+                                            ],    
+                                            formatter: '.formatter.formatHandlerView'
+                                          }" class="sapUiSmallMarginTop"/>                                     
+                                </l:HorizontalLayout>
+                                <l:HorizontalLayout>
+                                    <Label text="Solicitante" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+                                    <Text text="{header>/ernam}" class="sapUiSmallMarginTop" />                                     
+                                </l:HorizontalLayout>
+                                <l:HorizontalLayout>
+                                    <Label text="Fecha y hora de creación" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+                                    <Text text="{path: 'header>/erdat',
+                                                    type: 'sap.ui.model.type.Date', 
+                                                    formatOptions: { 
+                                                        source: {
+                                                            pattern: 'yyyy-MM-ddTHH:mm:ss'
+                                                                },
+                                                        pattern: 'dd/MM/yyyy'
+                                                                    } 
+                                                    } - {header>/erzet}" 
+                                            class="sapUiSmallMarginTop" />               
+                                </l:HorizontalLayout>
+                                </VBox>        
+                            </l:Grid>
+
+                
+            </Panel>
+            <Panel id="idSolicitudPos" backgroundDesign="Transparent">
+            <Table id="idPosTab" items="{context>/positions}">
+                <headerToolbar>
+                    <Toolbar>
+                        <content>
+                            <Title text="Datos posición" level="H2"/>
+                            <ToolbarSpacer/>    
+                        </content>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="8em" hAlign="Center">
+                        <Text text="Tipo de imputación"/>
+                    </Column>
+                    <Column width="9em" hAlign="Center">
+                        <Text text="Material"/>
+                    </Column>
+                    <Column width="7em" hAlign="Center">
+                        <Text text="Centro"/>
+                    </Column>
+                    <Column width="3em" hAlign="Center">
+                        <Text text="Cantidad"/>
+                    </Column>                       
+                    <Column width="7em" hAlign="Center">
+                        <Text text="Centro de coste"/>
+                    </Column>  
+                    <Column width="8em" hAlign="Center">
+                        <Text text="Activo fijo"/>
+                    </Column>    
+                    <Column width="6em" hAlign="Center">
+                        <Text text="Fecha de entrega"/>
+                    </Column> 
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>                              
+                            <Text text="{ parts:[
+                                                {path: 'context>knttp'},
+                                                {path: 'context>knttpTxt'}
+                                            ],    
+                                            formatter: '.formatter.formatHandlerView'
+                                          }" 
+                                    />
+                            <Text text="{ parts:[
+                                                {path: 'context>matnr'},
+                                                {path: 'context>matnrTxt'}
+                                            ],    
+                                            formatter: '.formatter.formatHandlerView'
+                                          }" 
+                                    />                            
+                            <Text text="{ parts:[
+                                                {path: 'context>werks'},
+                                                {path: 'context>knttpTxt'}
+                                            ],    
+                                            formatter: '.formatter.formatHandlerView'
+                                          }" 
+                                    />                                                                
+                            <Text text="{context>menge}" />                                                                                                       
+                            <Text text="{context>kostl}" />
+                            <Text text="{context>anln1}" /> 
+                            <Text text="{path: 'header>/erdat',
+                                                    type: 'sap.ui.model.type.Date', 
+                                                    formatOptions: { 
+                                                        source: {
+                                                            pattern: 'yyyy-MM-ddTHH:mm:ss'
+                                                                },
+                                                        pattern: 'dd/MM/yyyy'
+                                                                    } 
+                                                    } {context>fldat}" /> 
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            </Panel>
+            </l:VerticalLayout>
+        </content>
+				</Page>
+			</pages>
+		</App>
+</mvc:View>
